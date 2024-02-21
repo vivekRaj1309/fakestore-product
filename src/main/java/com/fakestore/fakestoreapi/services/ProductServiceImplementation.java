@@ -6,6 +6,8 @@ import com.fakestore.fakestoreapi.models.Product;
 import com.fakestore.fakestoreapi.repositories.CategoryRepositories;
 import com.fakestore.fakestoreapi.repositories.ProductRepositories;
 import com.fakestore.fakestoreapi.repositories.projection.ProductProjection;
+import jakarta.annotation.PostConstruct;
+import jakarta.annotation.PreDestroy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -39,9 +41,7 @@ public class ProductServiceImplementation implements ProductService{
     @Override
     public Product addNewProduct(Product product) {
         Optional<Category> category = categoryRepositories.findByName(product.getCategory().getName());
-        if(category.isPresent()){
-            product.setCategory(category.get());
-        }
+        category.ifPresent(product::setCategory);
         return productRepositories.save(product);
     }
 
@@ -84,5 +84,10 @@ public class ProductServiceImplementation implements ProductService{
         Product product = getSingleProduct(id);
         productRepositories.delete(product);
         return true;
+    }
+
+    @PreDestroy
+    public void doSomething(){
+        System.out.println("Hello World");
     }
 }

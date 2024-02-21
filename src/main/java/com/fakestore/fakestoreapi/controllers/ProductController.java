@@ -4,6 +4,7 @@ import com.fakestore.fakestoreapi.exceptions.ProductNotFoundException;
 import com.fakestore.fakestoreapi.models.Product;
 import com.fakestore.fakestoreapi.repositories.projection.ProductProjection;
 import com.fakestore.fakestoreapi.services.ProductService;
+import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,7 +22,7 @@ public class ProductController {
         this.productService = productService;
     }
     @GetMapping
-    public ResponseEntity<List<Product>> getAllProducts(){
+    public ResponseEntity<List<Product>> getAllProducts(@RequestHeader("AuthenticationToken") String token){
         return new ResponseEntity<>(productService.getAllProducts(), HttpStatus.OK);
     }
 
