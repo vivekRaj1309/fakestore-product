@@ -18,6 +18,4 @@ public class Category extends BaseModel{
     @JsonIgnore
     private List<Product> products;
     private String name;
-    private String roll;
-
 }

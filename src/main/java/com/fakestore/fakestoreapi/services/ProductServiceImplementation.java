@@ -5,8 +5,6 @@ import com.fakestore.fakestoreapi.models.Category;
 import com.fakestore.fakestoreapi.models.Product;
 import com.fakestore.fakestoreapi.repositories.CategoryRepositories;
 import com.fakestore.fakestoreapi.repositories.ProductRepositories;
-import com.fakestore.fakestoreapi.repositories.projection.ProductProjection;
-import jakarta.annotation.PostConstruct;
 import jakarta.annotation.PreDestroy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
